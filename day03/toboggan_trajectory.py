@@ -20,7 +20,7 @@ for line in slope:
     if line == '':
         slope.remove(line)
     else:
-        slope_extended.append(line*35)
+        slope_extended.append(line*100)
 
 # First problem
 def toboggan_trajectory(traverse):
@@ -31,13 +31,42 @@ def toboggan_trajectory(traverse):
 
     print(tree_count)
 
+# toboggan_trajectory(3)
+
 # Second problem
-def toboggan_trajectory2(traverse):
-    tree_count = 0
-    for count,line in enumerate(slope_extended):
-        if line[count*traverse] == '#':
-            tree_count += 1
+def toboggan_trajectory2(*args):
+    tree_list = []
+    slope_extended_abridged = []
 
-    print(tree_count)
 
-toboggan_trajectory(3)
+    for arg in args:
+        tree_count = 0
+        if arg[1] == 1:
+            for count,line in enumerate(slope_extended):
+                if line[count*arg[0]] == '#':
+                    tree_count += 1
+            tree_list.append(tree_count)
+        # elif arg[1] == 2:
+        #     for count,line in enumerate(slope_extended):
+        #         if count % 2 == 0:
+        #             if line[count*arg[0]] == '#':
+        #                 tree_count += 1
+        #     tree_list.append(tree_count)
+        elif arg[1] == 2:
+            for count,line in enumerate(slope_extended):
+                if count % 2 == 0:
+                    slope_extended_abridged.append(line)
+            for count,line in enumerate(slope_extended_abridged):
+                if line[count*arg[0]] == '#':
+                    tree_count += 1
+            tree_list.append(tree_count)
+                
+    print(tree_list)
+            
+    
+    total = 1
+    for t in tree_list:
+        total *= t
+    print(total)
+
+toboggan_trajectory2((1,1),(3,1),(5,1),(7,1),(1,2))
