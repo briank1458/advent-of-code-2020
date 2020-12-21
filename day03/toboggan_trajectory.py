@@ -9,34 +9,35 @@ TO DO
 # 31 characters per line
 """
 
+# Grab input data
 f = open('input.txt', 'r')
 slope = f.read()
 slope = slope.split('\n')
 
+# Clean data: extend lines, remove empty lines
 slope_extended = []
 for line in slope:
-    slope_extended.append(line*35)
+    if line == '':
+        slope.remove(line)
+    else:
+        slope_extended.append(line*35)
 
+# First problem
 def toboggan_trajectory(traverse):
     tree_count = 0
     for count,line in enumerate(slope_extended):
-        if line == '':
-            pass
-        else:
-            if line[count*traverse] == '#':
-                tree_count += 1
+        if line[count*traverse] == '#':
+            tree_count += 1
 
     print(tree_count)
 
+# Second problem
 def toboggan_trajectory2(traverse):
     tree_count = 0
     for count,line in enumerate(slope_extended):
-        if line == '':
-            pass
-        else:
-            if line[count*traverse] == '#':
-                tree_count += 1
+        if line[count*traverse] == '#':
+            tree_count += 1
 
     print(tree_count)
 
-toboggan_trajectory2(3)
+toboggan_trajectory(3)
